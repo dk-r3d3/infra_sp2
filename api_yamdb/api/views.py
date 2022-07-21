@@ -1,3 +1,4 @@
+"""High level support for doing this and that."""
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
@@ -27,6 +28,7 @@ EMAIL_NAME = 'userverify'
 @permission_classes([permissions.AllowAny])
 @action(methods=['post'], detail=False)
 def signup(request):
+    """High level support for doing this and that."""
     serializer = SignUpSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     email = serializer.validated_data.get('email')
@@ -52,6 +54,7 @@ def signup(request):
 @permission_classes([permissions.AllowAny])
 @action(methods=['post'], detail=False)
 def token(request):
+    """High level support for doing this and that."""
     serializer = TokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     username = serializer.validated_data.get('username')
@@ -66,6 +69,8 @@ def token(request):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """High level support for doing this and that."""
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdmin | IsSuperuser]
@@ -81,6 +86,7 @@ class UserViewSet(viewsets.ModelViewSet):
         permission_classes=[permissions.IsAuthenticated]
     )
     def users_me(self, request):
+        """High level support for doing this and that."""
         user = request.user
         user = get_object_or_404(User, username=user.username)
         if request.method == 'GET':
@@ -96,6 +102,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class CategoryViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
                       mixins.DestroyModelMixin, viewsets.GenericViewSet):
+    """High level support for doing this and that."""
+
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAdmin | ReadOnly]
@@ -106,6 +114,8 @@ class CategoryViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
 
 class GenreViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
                    mixins.DestroyModelMixin, viewsets.GenericViewSet):
+    """High level support for doing this and that."""
+
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     permission_classes = [IsAdmin | ReadOnly]
@@ -115,6 +125,8 @@ class GenreViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
 
 
 class TitleViewSet(viewsets.ModelViewSet):
+    """High level support for doing this and that."""
+
     queryset = Title.objects.annotate(Avg('reviews__score')).all()
     serializer_class = TitleSerializer
     permission_classes = [IsAdmin | ReadOnly]
@@ -123,12 +135,15 @@ class TitleViewSet(viewsets.ModelViewSet):
     filterset_class = TitleFilter
 
     def get_serializer_class(self):
+        """High level support for doing this and that."""
         if self.request.method == 'GET':
             return TitleGetSerializer
         return TitleSerializer
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
+    """High level support for doing this and that."""
+
     serializer_class = ReviewSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
@@ -136,11 +151,15 @@ class ReviewViewSet(viewsets.ModelViewSet):
     ]
 
     def get_queryset(self):
+        """High level support for doing this and that."""
+        """High level support for doing this and that."""
         title_id = self.kwargs.get('title_id')
         title = get_object_or_404(Title, id=title_id)
         return title.reviews.all()
 
     def perform_create(self, serializer):
+        """High level support for doing this and that."""
+        """High level support for doing this and that."""
         author = self.request.user
         title_id = self.kwargs.get('title_id')
         title = get_object_or_404(Title, id=title_id)
@@ -148,6 +167,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    """High level support for doing this and that."""
+
     serializer_class = CommentSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
@@ -155,11 +176,13 @@ class CommentViewSet(viewsets.ModelViewSet):
     ]
 
     def get_queryset(self):
+        """High level support for doing this and that."""
         review_id = self.kwargs.get('review_id')
         review = get_object_or_404(Review, id=review_id)
         return review.comments.all()
 
     def perform_create(self, serializer):
+        """High level support for doing this and that."""
         author = self.request.user
         review_id = self.kwargs.get('review_id')
         review = get_object_or_404(Review, id=review_id)

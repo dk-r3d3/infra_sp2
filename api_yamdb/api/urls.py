@@ -1,3 +1,4 @@
+"""High level support for doing this and that."""
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 

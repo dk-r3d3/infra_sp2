@@ -5,6 +5,7 @@ import sys
 
 
 def main():
+    """High level support for doing this and that."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_yamdb.settings')
     try:
         from django.core.management import execute_from_command_line

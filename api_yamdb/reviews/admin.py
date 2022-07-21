@@ -1,8 +1,10 @@
+"""High level support for doing this and that."""
 from django.contrib import admin
 from .models import User, Title, Category, Genre, Comment, Review
 
 
 class UserAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'username',
@@ -15,6 +17,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class TitleAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'name',
@@ -25,6 +28,7 @@ class TitleAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'name',
@@ -33,6 +37,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class GenreAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'name',
@@ -41,6 +46,7 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 class ReviewAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'title',
@@ -51,6 +57,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
+    """High level support for doing this and that."""
 
     list_display = (
         'review',
