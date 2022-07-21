@@ -163,4 +163,4 @@ DELETE yamdb.com/api/v1/users/{username}/
 
 ### Автор:
 
-Дмитрий Коротеев 
+Copyright © 2022 Dmitry Koroteev. All rights reserved.
